@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group 'com.calculate'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'log4j', name: 'log4j', version: '1.2.17'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile group: 'org.mockito', name: 'mockito-core', version: '2.1.0'
+    testCompile group: 'log4j', name: 'log4j', version: '1.2.17'
+}
+
+mainClassName = 'main.Main'
+
+/**
+ * Change the path of the file here...
+ */
+run {
+    args += ['/Users/miteshpatel/Desktop/OCC Take Home Coding names.txt']
+}
