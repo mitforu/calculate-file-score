@@ -8,7 +8,7 @@ public class NameExtractorImplTest {
     @Test
     public void getName_Test(){
         NameExtractor<Name, char[]> nameNameExtractor = new NameExtractorImpl();
-        Name mitesh = new Name("Mitesh");
+        Name mitesh = Name.builder().setFirstName("Mitesh").build();
         char[] nameCharArray = nameNameExtractor.extractName(mitesh);
 
         Assert.assertArrayEquals(nameCharArray, mitesh.getFirstName().toCharArray());

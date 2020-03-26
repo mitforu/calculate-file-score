@@ -10,10 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.inOrder;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class NamesParserImplTest {
 
@@ -27,9 +24,9 @@ public class NamesParserImplTest {
 
     @Test
     public void test_score(){
-        Name mary = new Name("MARY");
-        Name patricia = new Name("PATRICIA");
-        Name linda = new Name("LINDA");
+        Name mary =  Name.builder().setFirstName("MARY").build();
+        Name patricia =  Name.builder().setFirstName("PATRICIA").build();
+        Name linda =  Name.builder().setFirstName("LINDA").build();
 
         when(calculateNameWeight.calculateWeight(mary)).thenReturn(5);
         when(calculateNameWeight.calculateWeight(patricia)).thenReturn(10);

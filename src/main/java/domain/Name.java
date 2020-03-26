@@ -1,12 +1,8 @@
 package domain;
 
 public class Name {
-    String firstName;
-    String lastName;
-
-    public Name(String firstName){
-        this.firstName = firstName;
-    }
+    private String firstName;
+    private String lastName;
 
     public Name(String firstName, String lastName) {
         this.firstName = firstName;
@@ -17,15 +13,31 @@ public class Name {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
     public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public static NameBuilder builder(){
+        return new NameBuilder();
     }
+
+    public static class NameBuilder{
+        private String firstName;
+        private String lastName;
+
+        public NameBuilder setFirstName(String firstName){
+            this.firstName = firstName;
+            return this;
+        }
+
+        public NameBuilder setLastName(String lastName){
+            this.lastName = lastName;
+            return this;
+        }
+
+        public Name build(){
+            return new Name(firstName, lastName);
+        }
+    }
+
 }

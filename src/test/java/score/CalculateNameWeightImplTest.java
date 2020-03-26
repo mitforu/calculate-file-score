@@ -22,7 +22,7 @@ public class CalculateNameWeightImplTest {
 
     @Test
     public void testCalculateWeight(){
-        Name name = new Name("MARRY");
+        Name name = Name.builder().setFirstName("MARRY").build();
         when(extractor.extractName(any())).thenReturn(name.getFirstName().toCharArray());
         Integer weight = calculateNameWeightImpl.calculateWeight(name);
         verify(extractor, times(1)).extractName(name);

@@ -1,6 +1,5 @@
 package file;
 
-
 import domain.Name;
 import org.apache.log4j.Logger;
 
@@ -30,11 +29,16 @@ public class ReadFileImpl implements ReadFile<File, List<Name>> {
         return getNames(names);
     }
 
+    /**
+     * Filtering the name which are empty
+     * Also assumption is taken that names in the file will be c
+     * omma separated and will have alphabet only
+     */
     public List<Name> getNames(String names){
         return Stream.of(names.split(","))
                 .map(it -> it.replace("\"", ""))
                 .filter(it -> it.length() > 0)
-                .map(Name::new)
+                .map(it -> Name.builder().setFirstName(it).build())
                 .collect(Collectors.toList());
     }
 }

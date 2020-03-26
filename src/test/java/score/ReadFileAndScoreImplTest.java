@@ -39,7 +39,7 @@ public class ReadFileAndScoreImplTest {
 
     @Test
     public void should_call_score_with_return_value_of_readFile(){
-        List<Name> names = Arrays.asList(new Name("Mitesh"));
+        List<Name> names = Arrays.asList(Name.builder().setFirstName("Mitesh").build());
         when(readFile.readFileAsNames(any())).thenReturn(names);
         File file = new File("c://test.text");
         readFileAndScore.scoreFile(file);
@@ -48,7 +48,7 @@ public class ReadFileAndScoreImplTest {
 
     @Test
     public void should_return_score_from_the_name_parser(){
-        List<Name> names = Arrays.asList(new Name("Mitesh"));
+        List<Name> names = Arrays.asList(Name.builder().setFirstName("Mitesh").build());
         when(readFile.readFileAsNames(any())).thenReturn(names);
         when(namesParser.score(any())).thenReturn(10L);
 
