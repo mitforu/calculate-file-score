@@ -28,4 +28,12 @@ public class CalculateNameWeightImplTest {
         verify(extractor, times(1)).extractName(name);
         assertEquals(Optional.of(weight), Optional.of(75));
     }
+
+    @Test
+    public void should_ignore_invalid_characters(){
+        Name name = Name.builder().setFirstName("MARRY").build();
+        when(extractor.extractName(any())).thenReturn(null);
+        Integer weight = calculateNameWeightImpl.calculateWeight(name);
+        assertEquals(Optional.of(weight), Optional.of(0));
+    }
 }

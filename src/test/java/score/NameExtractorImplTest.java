@@ -12,6 +12,12 @@ public class NameExtractorImplTest {
         char[] nameCharArray = nameNameExtractor.extractName(mitesh);
 
         Assert.assertArrayEquals(nameCharArray, mitesh.getFirstName().toCharArray());
+    }
 
+    @Test
+    public void shoule_return_empty_array_if_name_is_null(){
+        NameExtractor<Name, char[]> nameNameExtractor = new NameExtractorImpl();
+        char[] nameCharArray = nameNameExtractor.extractName(null);
+        Assert.assertArrayEquals(nameCharArray, new char[]{});
     }
 }

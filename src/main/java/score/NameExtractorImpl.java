@@ -10,6 +10,8 @@ import domain.Name;
 public class NameExtractorImpl implements NameExtractor<Name, char[]> {
     @Override
     public char[] extractName(Name name){
+        if(name == null) return new char[]{};
         return name.getFirstName().toCharArray();
+
     }
 }

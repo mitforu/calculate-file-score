@@ -22,5 +22,4 @@ public class ReadFileImplTest {
         Assert.assertEquals(names.get(2).getFirstName(), "LINDA");
 
     }
-
 }
