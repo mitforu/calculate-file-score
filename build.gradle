@@ -25,5 +25,5 @@ mainClassName = 'main.Main'
  * Change the path of the file here...
  */
 run {
-    args += ['/Users/miteshpatel/Desktop/OCC Take Home Coding names.txt']
+    args += ['src/main/resources/file.txt']
 }
