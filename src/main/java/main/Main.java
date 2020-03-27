@@ -1,9 +1,10 @@
 package main;
 
 import domain.Name;
-import file.ReadFile;
+import file.NameRetrievalInterface;
 import file.ReadFileImpl;
 import score.*;
+import domain.Source;
 
 import java.io.File;
 import java.util.List;
@@ -32,9 +33,17 @@ public class Main {
          */
         NamesParser<List<Name>, Long> nameParser = new NamesParserImpl(weight);
 
-        ReadFile<File, List<Name>> readFile = new ReadFileImpl();
-        ReadFileAndScore<File, Long> readFileAndScore = new ReadFileAndScoreImpl(readFile, nameParser);
-        Long score = readFileAndScore.scoreFile(file);
+        /**
+         * If in future the source changes ie from file to some other like a database
+         * then Source type will change from file to desired type and implementation of
+         * NameRetrievalInterface will be provided
+         */
+        NameRetrievalInterface<Source<?>, List<Name>> readFile = new ReadFileImpl();
+
+        ReadFileAndScore<Source<?>, Long> readFileAndScore = new ReadFileAndScoreImpl(readFile, nameParser);
+        Source<File> source = new Source<>(file);
+
+        Long score = readFileAndScore.scoreFile(source);
 
         System.out.println(score);
     }

@@ -2,28 +2,28 @@ package score;
 
 
 import domain.Name;
-import file.ReadFile;
+import file.NameRetrievalInterface;
+import domain.Source;
 
-import java.io.File;
 import java.util.List;
 
-public class ReadFileAndScoreImpl implements ReadFileAndScore<File, Long> {
+public class ReadFileAndScoreImpl implements ReadFileAndScore<Source<?>, Long> {
 
-    ReadFile<File, List<Name>> readFile;
+    NameRetrievalInterface<Source<?>, List<Name>> readFile;
     NamesParser<List<Name>, Long> namesParser;
 
     /**
-     * ReadFile is a interface based and implementation of that reads a file.
+     * NameRetrievalInterface is a interface based and implementation of that reads a file.
      * In future we can have different implementation based on business case
      */
-    public ReadFileAndScoreImpl(ReadFile readFile, NamesParser namesParser){
+    public ReadFileAndScoreImpl(NameRetrievalInterface<Source<?>, List<Name>> readFile, NamesParser namesParser){
         this.readFile = readFile;
         this.namesParser = namesParser;
     }
 
     @Override
-    public Long scoreFile(File file) {
-        List<Name> strings = readFile.readFileAsNames(file);
+    public Long scoreFile(Source<?> file) {
+        List<Name> strings = readFile.retrieveNames(file);
         return namesParser.score(strings);
     }
 }

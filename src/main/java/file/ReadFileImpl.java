@@ -2,6 +2,7 @@ package file;
 
 import domain.Name;
 import score.CalculateNameWeightImpl;
+import domain.Source;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,16 +13,16 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class ReadFileImpl implements ReadFile<File, List<Name>> {
+public class ReadFileImpl implements NameRetrievalInterface<Source<?>, List<Name>> {
     private final static Logger LOGGER = Logger.getLogger(CalculateNameWeightImpl.class.getName());
     @Override
-    public List<Name> readFileAsNames(File file) {
+    public List<Name> retrieveNames(Source<?> file) {
         String names = "";
         try {
-            Scanner myReader = new Scanner(file);
+            Scanner myReader = new Scanner((File) file.getT());
             /**
              * Reading only one line as per the task
-             * but new implementation of the ReadFile can be injected based
+             * but new implementation of the NameRetrievalInterface can be injected based
              * business requirement change.
              */
             if(myReader.hasNextLine()) {
